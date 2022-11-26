@@ -1,25 +1,51 @@
-import logo from './logo.svg';
+import {Component} from "react";
 import './App.css';
 
+class ChangeNumber extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            counter: this.props.counter
+        }
+    }
+
+    decrement = () => {
+        this.setState(state => ({
+            counter: this.state.counter + 1
+        }))
+    }
+    increment = () => {
+        this.setState(state => ({
+            counter: this.state.counter - 1
+        }))
+    }
+    reset = () => {
+        this.setState(state => ({
+            counter: this.props.counter
+        }))
+    }
+
+
+    render() {
+        return (
+            <div>
+                <button onClick={this.decrement}>decrement</button>
+                <button onClick={this.increment}>increment</button>
+                <button onClick={this.reset}>reset</button>
+
+                <h1>My counter now is {this.state.counter}</h1>
+            </div>
+        )
+    };
+}
+
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className="App">
+            <ChangeNumber counter={0}/>
+        </div>
+    );
 }
 
 export default App;
